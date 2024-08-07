@@ -5,6 +5,7 @@
 typedef struct {
 	char nome[30];
 	struct No * outro;
+	struct No * lado;
 }No;
 
 void mostra(No pessoa){
@@ -12,6 +13,10 @@ void mostra(No pessoa){
 	if(pessoa.outro != NULL){
 		No * amigo = (No*) pessoa.outro;
 		printf(" e meu amigo eh: %s", amigo->nome);
+	}
+	if(pessoa.lado != NULL){
+		No * colega = (No*) pessoa.lado;
+		printf("\nMeu outro amigo eh: %s", colega->lado);
 	}
 }
 
@@ -25,6 +30,11 @@ int main(){
 	pessoa2.outro = (struct No*) &pessoa3;
 	pessoa3.outro = (struct No*) &pessoa1;
     pessoa4.outro = (struct No*) &pessoa2;
+
+	pessoa1.lado = (struct No*) &pessoa4;
+	pessoa2.lado = (struct No*) &pessoa1;
+	pessoa3.lado = (struct No*) &pessoa2;
+	pessoa4.lado = (struct No*) &pessoa3;
 	
 	mostra(pessoa1);
 	mostra(pessoa2);
